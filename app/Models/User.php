@@ -6,19 +6,17 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class User extends Eloquent
 {
-    static function allUsers()
+    static function allUsers($desc)
     {
-        return User::all();
-    }
-
-    public function first()
-    {
-        return $this->users[0];
+        if (isset($desc) && $desc === true) {
+            return User::all()->sortByDesc('age');
+        }
+        return User::all()->sortBy('age');
     }
 
     public function get($id)
     {
-        return $this->users[$id];
+        return User::where('id', $id)->get();
     }
 
 

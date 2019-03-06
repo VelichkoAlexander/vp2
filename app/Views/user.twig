@@ -1,0 +1,16 @@
+{% include "layout/header.twig" %}
+<div class="container">
+    <br>
+    <h4 class="text-center">{{ user.name }}</h4>
+    <br>
+    <div>
+        <a href="/user/showlist" class="btn btn-secondary">Back</a>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item"><b>Info: </b>{{ user.name }}</li>
+        <li class="list-group-item"><b>Age: </b>{{ user.age }}</li>
+        <li class="list-group-item"><b>Photo: </b><img src="{{ user.photo }}" alt="{{ user.name }}"></li>
+    </ul>
+</div>
+
+{% include "layout/footer.twig" %}

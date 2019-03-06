@@ -9,20 +9,23 @@ class View
     protected $loader;
     protected $twig;
 
-    public function render(string $filename, array $data)
+    public function render($filename, array $data)
     {
         extract($data);
-        require_once __DIR__ . "/../views/" .$filename.".php";
+        require_once APPLICATION_PATH . "/Views/" . $filename . ".php";
     }
+
     public function __construct($data = [])
     {
-        $this->loader = new \Twig_Loader_Filesystem(APPLICATION_PATH.'views');
+        $this->loader = new \Twig_Loader_Filesystem(APPLICATION_PATH . 'Views');
         $this->twig = new Twig_Environment($this->loader);
     }
 
-    public function twigLoad(string $filename, array $data)
+    public function twigRender($filename, array $data)
     {
-        echo $this->twig->render($filename.".twig", $data);
+
+
+        echo $this->twig->render($filename . ".twig", $data);
     }
 }
 

@@ -1,0 +1,41 @@
+{% include "layout/header.twig" %}
+<div class="container">
+    <br>
+    <h4 class="text-center">Users List</h4>
+    <br>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>
+                {% if sort %}
+                    <a href="/user/showlist/">Adult <i class="fas fa-sort-down"></i></a>
+                {% else %}
+                    <a href="/user/showlist/?sort=desc">Adult <i class="fas fa-sort-up"></i></a>
+                {% endif %}
+            </th>
+            <th>Controls</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+
+            <tr>
+                <td>{{ user.name }}</td>
+                <td>
+                    {% if user.age >= 18 %}
+                        Совершеннолетний
+                    {% else %}
+                        Несовершеннолетний
+                    {% endif %}
+
+                </td>
+                <td>
+                    <a href="/user/show/?id={{ user.id }}" class="btn btn-success">Show</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% include "layout/footer.twig" %}
