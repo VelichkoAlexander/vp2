@@ -2,14 +2,21 @@
 
 namespace App\Core;
 
-use Symfony\Component\Dotenv\Dotenv;
+//use App\Core\View;
 
 class Config
 {
+
+    protected $view;
+
     public function __construct()
     {
-        $dotenv = new Dotenv();
-        $dotenv->load(APPLICATION_PATH . '/../.env');
+        $this->view = new View();
         require "bootstrap.php";
+    }
+
+    public function pageNotFound($error = 'Something wrong')
+    {
+        $this->view->twigRender('/layout/404', ['error' => $error]);
     }
 }

@@ -9,14 +9,14 @@ class User extends Eloquent
     static function allUsers($desc)
     {
         if (isset($desc) && $desc === true) {
-            return User::all()->sortByDesc('age');
+            return self::all()->sortByDesc('age');
         }
-        return User::all()->sortBy('age');
+        return self::all()->sortBy('age');
     }
 
     public function get($id)
     {
-        return User::where('id', $id)->get();
+        return $this->where('id', $id)->get();
     }
 
 

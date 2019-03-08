@@ -1,12 +1,9 @@
 <?php
-define('APPLICATION_PATH', getcwd().'/../app/');
-define('PUBLIC_PATH', getcwd());
+session_start();
+require '../app/constants.php';
+require APPLICATION_PATH . '../vendor/autoload.php';
+$main = new \App\Core\Config(); //Bootstrap.php //Core //Loader
 
-require APPLICATION_PATH.'../vendor/autoload.php';
-new \App\Core\Config(); //Bootstrap.php //Core //Loader
-
-
-// /users/test
 $routes = explode('/', $_SERVER['REQUEST_URI']);
 $controller_name = "Main";
 $action_name = 'defaultPage';
@@ -19,7 +16,7 @@ if (!empty($routes[1])) {
 if (!empty($routes[2])) {
     $action_name = $routes[2];
 }
-$filename = APPLICATION_PATH."controllers/".strtolower($controller_name).".php";
+$filename = APPLICATION_PATH . "controllers/" . strtolower($controller_name) . ".php";
 try {
     if (file_exists($filename)) {
         require_once $filename;
@@ -27,7 +24,7 @@ try {
         throw new Exception("File not found");
     }
 
-    $classname = '\App\\'.ucfirst($controller_name);// \App\Posts
+    $classname = '\App\\' . ucfirst($controller_name);//
 
     if (class_exists($classname)) {
         $controller = new $classname();
@@ -41,8 +38,7 @@ try {
         throw new Exception("Method not found");
     }
 } catch (Exception $e) {
-    echo $e;
-    require APPLICATION_PATH."errors/404.php";
+    $main->pageNotFound($e);
 }
 
 
