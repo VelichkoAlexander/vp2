@@ -15,6 +15,7 @@ Capsule::schema()->create('users', function ($table) {
     $table->integer('age');
     $table->text('info')->nullable();
     $table->text('photo');
+    $table->boolean('admin')->default(0);
     $table->timestamps();
 });
 Capsule::schema()->dropIfExists('files');

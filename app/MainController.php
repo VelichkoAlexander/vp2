@@ -34,4 +34,5 @@ class MainController
     {
         return isset($_SESSION['user_id']);
     }
+
 }

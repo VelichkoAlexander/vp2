@@ -36,5 +36,9 @@ class User extends Eloquent
 
     }
 
+    public function getAdminById($id)
+    {
+        return $this->where('id', $id)->first('admin');
+    }
 
 }

@@ -27,7 +27,7 @@ class User extends MainController
             $this->sort = true;
         }
         $usersData = $this->user->allUsers($this->sort);
-        $this->view->twigRender('users', ['users' => $usersData, 'sort' => $this->sort]);
+        $this->view->twigRender('users', ['users' => $usersData, 'sort' => $this->sort, 'isAdmin' => $this->isAdmin()]);
     }
 
     public function show()
@@ -102,6 +102,13 @@ class User extends MainController
     {
         unset($_SESSION['user_id']);
         header('Location: /');
+    }
+
+    private function isAdmin()
+    {
+        $userId = $_SESSION['user_id'];
+        $user = $this->user->getAdminById($userId);
+        return $user['admin'];
     }
 
 

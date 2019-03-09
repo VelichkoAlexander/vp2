@@ -3,6 +3,9 @@
     <a href="/user/logout/">LogOut</a>
     <br>
     <h4 class="text-center">Users List</h4>
+    {% if isAdmin %}
+        <a href="/user/registration/">Register User</a>
+    {% endif %}
     <br>
     <table class="table">
         <thead>
