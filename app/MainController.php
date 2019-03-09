@@ -4,16 +4,19 @@ namespace App;
 
 use App\Core\View;
 use \App\Models\User as UserModel;
+use \App\Models\File as FileModel;
 
 class MainController
 {
     protected $view;
     protected $user;
+    protected $file;
 
     public function __construct()
     {
         $this->view = new View();
         $this->user = new UserModel();
+        $this->file = new FileModel();
 
     }
 

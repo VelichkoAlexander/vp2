@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class User extends Eloquent
 {
+
+//    public static $timestamps = true;
+    protected $fillable = ['name', 'password', 'info','email', 'age', 'photo'];
+
     static function allUsers($desc)
     {
         if (isset($desc) && $desc === true) {
@@ -25,9 +29,11 @@ class User extends Eloquent
     }
 
 
-    public function store($name, $user_id, $info)
+    public function store($userData)
     {
-        //
+        $user = User::create($userData);
+        return $user->id;
+
     }
 
 

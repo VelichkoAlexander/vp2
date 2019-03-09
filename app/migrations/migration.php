@@ -4,6 +4,7 @@ require __DIR__ . '/../../vendor/autoload.php';
 require_once "../Core/bootstrap.php";
 
 use Illuminate\Database\Capsule\Manager as Capsule;
+
 Capsule::schema()->dropIfExists('users');
 
 Capsule::schema()->create('users', function ($table) {
@@ -14,5 +15,12 @@ Capsule::schema()->create('users', function ($table) {
     $table->integer('age');
     $table->text('info')->nullable();
     $table->text('photo');
+    $table->timestamps();
+});
+Capsule::schema()->dropIfExists('files');
+Capsule::schema()->create('files', function ($table) {
+    $table->increments('id');
+    $table->text('name');
+    $table->integer('user_id');
     $table->timestamps();
 });

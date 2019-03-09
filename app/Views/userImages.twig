@@ -1,0 +1,25 @@
+{% include 'layout/header.twig' %}
+<div class="container">
+    <a href="/" class="btn btn-primary">Back</a>
+    <h3 class="text-center">User files</h3>
+    <div class="row">
+
+        {% for item in images %}
+            <div class="col-lg-3 text-center">
+                <img src="{{ item.name }}" class="img-thumbnail">
+            </div>
+        {% endfor %}
+    </div>
+    <h3 class="text-center">Upload file</h3>
+    <div class="row">
+
+        <form action="/file/upload/?id={{ userId }}" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="exampleFormControlFile1">file input</label>
+                <input name="photo" type="file" class="form-control-file" id="exampleFormControlFile1">
+            </div>
+            <button class="btn btn-info">Upload</button>
+        </form>
+    </div>
+</div>
+{% include 'layout/footer.twig' %}
