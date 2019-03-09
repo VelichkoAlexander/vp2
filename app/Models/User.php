@@ -14,9 +14,14 @@ class User extends Eloquent
         return self::all()->sortBy('age');
     }
 
-    public function get($id)
+    public function getById($id)
     {
         return $this->where('id', $id)->get();
+    }
+
+    public function getUserByLogin($login)
+    {
+        return $this->where('email', $login)->first()->toArray();
     }
 
 

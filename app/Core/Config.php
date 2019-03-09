@@ -13,10 +13,13 @@ class Config
     {
         $this->view = new View();
         require "bootstrap.php";
+
+
     }
 
     public function pageNotFound($error = 'Something wrong')
     {
         $this->view->twigRender('/layout/404', ['error' => $error]);
     }
+
 }

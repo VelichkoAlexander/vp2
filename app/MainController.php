@@ -1,4 +1,5 @@
 <?php
+
 namespace App;
 
 use App\Core\View;
@@ -13,10 +14,21 @@ class MainController
     {
         $this->view = new View();
         $this->user = new UserModel();
+
     }
 
     public function defaultPage()
     {
-        echo "Default";
+        if ($this->isUserAuthorized()) {
+            header('Location:/user/showlist');
+            die;
+        } else {
+            $this->view->twigRender('login', []);
+        }
+    }
+
+    public function isUserAuthorized()
+    {
+        return isset($_SESSION['user_id']);
     }
 }
